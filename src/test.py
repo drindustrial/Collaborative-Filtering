@@ -1,15 +1,27 @@
 import numpy as np
 import pandas as pd
 import os
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+import torch
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 path = os.path.abspath(os.getcwd())
 path = path[:path.rfind('\\') + 1]
 DATA_PATH = path + "data\\"
 
 test = pd.read_csv(DATA_PATH + 'test.csv')
+train = pd.read_csv(DATA_PATH + 'train.csv')
 
-P = numpy.load(path + 'models\\P.arr')
-Q = numpy.load(path + 'models\\Q.arr')
+ratings = train['rating'].values
+userIds = train['userId'].values
+itemIds = train['movieId'].values
+n_users = np.max(userIds) + 1
+n_items = np.max(itemIds) + 1
+
+P = np.load(path + 'models\\P.arr.npy')
+Q = np.load(path + 'models\\Q.arr.npy')
 
 ratings_test = test['rating'].values
 userIds_test = test['userId'].values
@@ -65,7 +77,7 @@ model.load_state_dict(torch.load(path + 'models\\NN.t'))
 ratings_test = test['rating'].values
 userIds_test = test['userId'].values
 itemIds_test = test['movieId'].values
-pred = net.forward(torch.tensor(userIds_test).to(device),torch.tensor(itemIds_test).to(device)).cpu().detach().numpy()
+pred = model.forward(torch.tensor(userIds_test).to(device),torch.tensor(itemIds_test).to(device)).cpu().detach().numpy()
 pred = np.array([s[0] for s in pred])
 MSE_test_nn = np.sum(np.square(ratings_test - pred))/ratings_test.shape[0]
 

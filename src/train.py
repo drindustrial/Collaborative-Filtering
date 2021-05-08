@@ -123,4 +123,4 @@ for epoch in range(epochs):
     scheduler.step(loss)
     print("Loss at epoch {} = {}".format(epoch, train_loss/c))
     
-torch.save(model.state_dict(), path + 'models\\NN.t')
+torch.save(net.state_dict(), path + 'models\\NN.t')
