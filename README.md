@@ -1,7 +1,7 @@
 # Collaborative-Filtering
 
 *Training* 
-For training and saving model run train.py inside src folder
+For training and saving model run src/train.py
 
 *Testing*
-For testing modeles run test.py inside src folder
+For testing modeles run src/test.py
