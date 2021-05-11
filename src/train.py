@@ -2,12 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 
-path = os.path.abspath(os.getcwd())
-print(path)
-path = path[:path.rfind('\\') + 1]
-print(path)
-DATA_PATH = path + "data\\"
-print(path)
+path = os.path.abspath(os.getcwd()).replace('\\','/')
+path = path[:path.rfind('/') + 1]
+DATA_PATH = path + "data/"
 
 train = pd.read_csv(DATA_PATH + 'train.csv')
 
