@@ -4,7 +4,7 @@ import os
 
 path = os.path.abspath(os.getcwd()).replace('\\','/')
 # path = path[:path.rfind('/') + 1]
-DATA_PATH = path + "data/"
+DATA_PATH = path + "/data/"
 
 train = pd.read_csv(DATA_PATH + 'train.csv')
 
