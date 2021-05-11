@@ -36,10 +36,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run train
-        working-directory: ./
+        working-directory: ./src
         run: |
           python train.py
       - name: Run test
-        working-directory: ./base_model
+        working-directory: ./src
         run: |
           python test.py
