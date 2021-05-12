@@ -7,9 +7,9 @@ import torch.optim as optim
 import torch
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-path = os.path.abspath(os.getcwd())
-path = path[:path.rfind('\\') + 1]
-DATA_PATH = path + "data\\"
+path = os.path.abspath(os.getcwd()).replace('\\','/')
+# path = path[:path.rfind('/') + 1]
+DATA_PATH = path + "/data/"
 
 test = pd.read_csv(DATA_PATH + 'test.csv')
 train = pd.read_csv(DATA_PATH + 'train.csv')
